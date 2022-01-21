@@ -1,8 +1,8 @@
 SELECT * FROM locations;
 
-SELECT * --Á¶È¸ÇÏ°í ½ÍÀº ÄÃ·³¸íµé
+SELECT * --ì¡°íšŒí•˜ê³  ì‹¶ì€ ì»¬ëŸ¼ëª…ë“¤
 FROM departments    
-WHERE department_id = 60 or department_id = 90;   --Á¶°Ç½Ä
+WHERE department_id = 60 or department_id = 90;   --ì¡°ê±´ì‹
 
 SELECT employee_id, first_name, last_name, salary
 FROM employees
@@ -12,12 +12,12 @@ SELECT employee_id, first_name, last_name, salary, department_id
 FROM employees
 WHERE salary >= 10000 and department_id = 110;
     
---»ç¿øÀÇ ¸ğµç Á¤º¸ last nameÀÌ King
+--ì‚¬ì›ì˜ ëª¨ë“  ì •ë³´ last nameì´ King
 SELECT *
 FROM employees
 WHERE last_name = 'King';
 
---»ç¿øÀÇ ¸ğµç Á¤º¸ ÀÔ»çÀÏÀÌ 2002/06/07
+--ì‚¬ì›ì˜ ëª¨ë“  ì •ë³´ ì…ì‚¬ì¼ì´ 2002/06/07
 SELECT *
 FROM employees
 WHERE hire_date = '2002/06/07';
@@ -26,12 +26,12 @@ SELECT *
 FROM employees
 WHERE hire_date = '2002-06-07';
 
---»ç¿øÀÇ ¸ğµç Á¤º¸ Ä¿¹Ì¼ÇÀÌ nullÀÌ ¾Æ´Ñ »ç¿øµé
+--ì‚¬ì›ì˜ ëª¨ë“  ì •ë³´ ì»¤ë¯¸ì…˜ì´ nullì´ ì•„ë‹Œ ì‚¬ì›ë“¤
 SELECT *
 FROM employees
 WHERE commission_pct is not null;
 
--- ºÎ¼­Å×ÀÌºí¿¡¼­ ºÎ¼­¹øÈ£·Î Á¶È¸
+-- ë¶€ì„œí…Œì´ë¸”ì—ì„œ ë¶€ì„œë²ˆí˜¸ë¡œ ì¡°íšŒ
 SELECT manager_id, department_name AS dname
 FROM departments
 WHERE department_id = 20;
@@ -41,17 +41,17 @@ SELECT nvl(commission_pct, 0) AS pct FROM employees;
 
 SELECT * FROM TAB;
 
--- »ç¿ø Å×ÀÌºí¿¡¼­ ±Ş¿©°¡ 8000ÀÌ»ó 10000ÀÌÇÏÀÇ Á¤º¸
+-- ì‚¬ì› í…Œì´ë¸”ì—ì„œ ê¸‰ì—¬ê°€ 8000ì´ìƒ 10000ì´í•˜ì˜ ì •ë³´
 SELECT * 
 FROM employees
 WHERE salary BETWEEN 8000 and 10000;
 
--- »ç¿ø Å×ÀÌºí¿¡¼­ 2002³âºÎÅÍ 2003³â 12¿ù 31ÀÏ »çÀÌ¿¡ ÀÔ»çÇÑ »ç¿øÀÇ Á¤º¸
+-- ì‚¬ì› í…Œì´ë¸”ì—ì„œ 2002ë…„ë¶€í„° 2003ë…„ 12ì›” 31ì¼ ì‚¬ì´ì— ì…ì‚¬í•œ ì‚¬ì›ì˜ ì •ë³´
 SELECT *
 FROM employees
 WHERE hire_date BETWEEN '20020101' and '20031231'; 
 
--- ºÎ¼­Å×ÀÌºí¿¡ ºÎ¼­¹øÈ£°¡ 10¹øÀÌ°Å³ª 30¹ø Á¤º¸ Ãâ·Â
+-- ë¶€ì„œí…Œì´ë¸”ì— ë¶€ì„œë²ˆí˜¸ê°€ 10ë²ˆì´ê±°ë‚˜ 30ë²ˆ ì •ë³´ ì¶œë ¥
 SELECT *
 FROM departments
 WHERE department_id IN (10, 30);
@@ -59,8 +59,8 @@ WHERE department_id IN (10, 30);
 SELECT * FROM employees
 WHERE first_name LIKE '%nal%';
 
--- First_name : sh·Î ½ÃÀÛÇÏ°Å³ª
--- Last_name : K·Î ½ÃÀÛÇÏ°Å³ª
+-- First_name : shë¡œ ì‹œì‘í•˜ê±°ë‚˜
+-- Last_name : Kë¡œ ì‹œì‘í•˜ê±°ë‚˜
 SELECT *
 FROM employees
 WHERE first_name LIKE 'Sh%' or last_name LIKE 'K%';
@@ -70,27 +70,27 @@ FROM employees
 WHERE department_id = 20
 ORDER BY salary ASC;
 
---½Ç½À ¹®Á¦
---1¹ø
+--ì‹¤ìŠµ ë¬¸ì œ
+--1ë²ˆ
 SELECT employee_id, first_name, salary, job_id, hire_date, manager_id
 FROM employees;
 
---2¹ø
+--2ë²ˆ
 SELECT first_name, last_name, salary, salary * 12 + 100 AS IncreasedAnn_Salary, (salary + 100) * 12 AS IncreasedSalary
 FROM employees;
 
---3¹ø
+--3ë²ˆ
 SELECT first_name, last_name, salary
 FROM employees
 WHERE salary BETWEEN 7000 and 10000
 ORDER BY salary ASC;
 
---4¹ø
+--4ë²ˆ
 SELECT *
 FROM employees
 WHERE last_name LIKE '%e%' and last_name LIKE '%o%';
 
---5¹ø
+--5ë²ˆ
 SELECT first_name, last_name, salary, job_id, commission_pct
 FROM employees
 WHERE commission_pct IS NOT NULL
