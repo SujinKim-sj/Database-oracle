@@ -1,5 +1,5 @@
---Subquery ½Ç½À
---1. »ç¹øÀÌ 198ÀÎ »ç¿øÀÌ ±Ù¹«ÇÏ´Â ºÎ¼­°¡ ÀÖ´Â µµ½Ã°¡ ¼ÓÇØ ÀÖ´Â ³ª¶ó°¡ ÀÖ´Â ´ë·ú Á¤º¸
+--Subquery ì‹¤ìŠµ
+--1. ì‚¬ë²ˆì´ 198ì¸ ì‚¬ì›ì´ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œê°€ ìžˆëŠ” ë„ì‹œê°€ ì†í•´ ìžˆëŠ” ë‚˜ë¼ê°€ ìžˆëŠ” ëŒ€ë¥™ ì •ë³´
 SELECT region_name 
 FROM regions 
 WHERE region_id = 
@@ -11,14 +11,14 @@ WHERE region_id =
         )
     );
 
---2. LAST_NAMEÀÌ Khoo ÀÎ »ç¶÷ÀÇ ±Ù¹«ÇÏ´Â ºÎ¼­¸í
+--2. LAST_NAMEì´ Khoo ì¸ ì‚¬ëžŒì˜ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œëª…
 SELECT department_name
 FROM departments
 WHERE department_id = 
     (SELECT department_id FROM employees WHERE last_name = 'Khoo'
     );
 
---3. »ç¿ø¹øÈ£°¡ 199¹øÀÎ »ç¿øÀÇ ¸Å´ÏÀú°¡ ±Ù¹«ÇÏ´Â ºÎ¼­°¡ ÀÖ´Â ³ª¶ó¸í Ãâ·Â
+--3. ì‚¬ì›ë²ˆí˜¸ê°€ 199ë²ˆì¸ ì‚¬ì›ì˜ ë§¤ë‹ˆì €ê°€ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œê°€ ìžˆëŠ” ë‚˜ë¼ëª… ì¶œë ¥
 SELECT country_name
 FROM countries
 WHERE country_id = 
@@ -30,7 +30,7 @@ WHERE country_id =
     )
 ;
 
---4. »ç¿øµé Áß¿¡¼­ ¿ù±ÞÀÌ °¡Àå ÀûÀº »ç¿øÀÌ ±Ù¹«ÇÏ´Â µµ½Ã¸í
+--4. ì‚¬ì›ë“¤ ì¤‘ì—ì„œ ì›”ê¸‰ì´ ê°€ìž¥ ì ì€ ì‚¬ì›ì´ ê·¼ë¬´í•˜ëŠ” ë„ì‹œëª…
 SELECT city
 FROM locations
 WHERE location_id = 
@@ -42,26 +42,26 @@ WHERE location_id =
     )
 ;
 
---5. ºÎ¼­¸íÀÌ ITÀÎ ºÎ¼­¿¡ ±Ù¹«ÇÏ´Â »ç¿øµéÀÇ ¸ðµç Á¤º¸ Ãâ·Â
+--5. ë¶€ì„œëª…ì´ ITì¸ ë¶€ì„œì— ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ë“¤ì˜ ëª¨ë“  ì •ë³´ ì¶œë ¥
 SELECT *
 FROM employees
 WHERE department_id = 
     (SELECT department_id FROM departments WHERE department_name = 'IT')
 ;
 
---6. Employees Å×ÀÌºí¿¡¼­ LAST_NAMEÀÌ Greenberg »ç¿øº¸´Ù ±Þ¿©¸¦ ´õ ¸¹ÀÌ ¹Þ°í ÀÖ´Â »ç¿øµéÁ¤º¸ Ãâ·Â
+--6. Employees í…Œì´ë¸”ì—ì„œ LAST_NAMEì´ Greenberg ì‚¬ì›ë³´ë‹¤ ê¸‰ì—¬ë¥¼ ë” ë§Žì´ ë°›ê³  ìžˆëŠ” ì‚¬ì›ë“¤ì •ë³´ ì¶œë ¥
 SELECT *
 FROM employees
 WHERE salary > (SELECT salary FROM employees WHERE last_name = 'Greenberg');
 
---7. ºÎ¼­º° ÃÖ¼Ò±Þ¿©¸¦ ¹Þ°í ÀÖ´Â »ç¿øÀÇ Á¤º¸ Ãâ·Â
---´Ù½Ã Ç®¾îº¸±â
+--7. ë¶€ì„œë³„ ìµœì†Œê¸‰ì—¬ë¥¼ ë°›ê³  ìžˆëŠ” ì‚¬ì›ì˜ ì •ë³´ ì¶œë ¥
+--ë‹¤ì‹œ í’€ì–´ë³´ê¸°
 SELECT *
 FROM employees
 WHERE salary IN
     (SELECT MIN(salary) FROM employees GROUP BY department_id);
 
---8. µµ½ÃÀÌ¸§ÀÌ 'S'·Î½ÃÀÛÇÏ´Â Áö¿ª¿¡ ±Ù¹«ÇÏ´Â »ç¿øÀÇ Á¤º¸ Ãâ·Â	
+--8. ë„ì‹œì´ë¦„ì´ 'S'ë¡œì‹œìž‘í•˜ëŠ” ì§€ì—­ì— ê·¼ë¬´í•˜ëŠ” ì‚¬ì›ì˜ ì •ë³´ ì¶œë ¥	
 SELECT *
 FROM employees
 WHERE department_id IN
@@ -69,13 +69,26 @@ WHERE department_id IN
         (SELECT location_id FROM locations WHERE city LIKE 'S%')
     );
 
---9. ¼ºÀÌ Austin »ç¿øÀÇ ¸Å´ÏÀú(»ó»ç)°¡ ±Ù¹«ÇÏ´Â ºÎ¼­ÀÇ Æò±Õ ±Þ¿©º¸´Ù ¸¹ÀÌ ¹Þ´Â ºÎ¼­ÀÇ ÀÌ¸§
---´Ù½Ã Ç®¾îº¸±â
+--9. ì„±ì´ Austin ì‚¬ì›ì˜ ë§¤ë‹ˆì €(ìƒì‚¬)ê°€ ê·¼ë¬´í•˜ëŠ” ë¶€ì„œì˜ í‰ê·  ê¸‰ì—¬ë³´ë‹¤ ë§Žì´ ë°›ëŠ” ë¶€ì„œì˜ ì´ë¦„
+--ë‹¤ì‹œ í’€ì–´ë³´ê¸°
 SELECT department_name
 FROM departments
 WHERE department_id IN
     (SELECT department_id FROM employees WHERE salary > ALL
-        (SELECT AVG(salary) FROM employees WHERE manager_id = 
-            (SELECT manager_id FROM employees WHERE last_name = 'Austin')
+        (SELECT AVG(salary) FROM employees WHERE department_id IN 
+            (SELECT department_id FROM employees WHERE manager_id =
+                (SELECT manager_id FROM employees WHERE last_name = 'Austin')
+            )
         )
     );
+
+SELECT AVG(salary), department_id
+FROM employees
+GROUP BY department_id;
+
+SELECT AVG(salary) FROM employees WHERE department_id IN 
+    (SELECT department_id FROM employees WHERE manager_id =
+        (SELECT manager_id FROM employees WHERE last_name = 'Austin')
+    )
+    --5760
+
